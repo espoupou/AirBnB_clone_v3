@@ -61,7 +61,7 @@ def put_state(state_id):
         abort(400, "Not a JSON")
 
     for k, v in body_request.items():
-        if k != 'id' and k != 'created_at' and k != '':
+        if k != 'id' and k != 'created_at' and k != 'updated_at':
             setattr(state, k, v)
             setattr(state, 'updated_at', datetime.utcnow())
 
