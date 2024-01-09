@@ -81,7 +81,7 @@ class DBStorage:
         None if not found
         """
         if cls in classes.values():
-            objects = self.__session.query(classes[cls])
+            objects = self.__session.query(classes[cls.__name__])
             for obj in objects:
                 if obj.id == id:
                     if "_sa_instance_state" in obj.__dict__:
