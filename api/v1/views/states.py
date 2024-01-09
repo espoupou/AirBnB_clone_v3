@@ -4,6 +4,7 @@ from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models import storage
 from models.state import State
+from datetime import datetime
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
@@ -62,6 +63,7 @@ def put_state(state_id):
     for k, v in body_request.items():
         if k != 'id' and k != 'created_at' and k != 'updated_at':
             setattr(state, k, v)
+            setattr(state, 'created_at', datetime.utcnow())
 
     storage.save()
     return make_response(jsonify(state.to_dict()), 200)
