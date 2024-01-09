@@ -85,8 +85,6 @@ class DBStorage:
             objects = self.__session.query(classes[cls])
             for obj in objects:
                 if obj.id == id:
-                    if "_sa_instance_state" in obj.__dict__:
-                        del obj.__dict__["_sa_instance_state"]
                     return obj
         return None
 
