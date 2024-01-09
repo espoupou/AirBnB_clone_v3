@@ -81,7 +81,7 @@ class DBStorage:
         None if not found
         """
         if cls in classes.values() or cls in classes.keys():
-                cls = cls.__name__ if cls in classes.values() else cls
+            cls = cls.__name__ if cls in classes.values() else cls
             objects = self.__session.query(classes[cls])
             for obj in objects:
                 if obj.id == id:
