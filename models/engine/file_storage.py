@@ -89,12 +89,19 @@ class FileStorage:
         count the number of objects in storage
         """
         all_class = classes.values()
+        if cls:
+            counter = 0
+            for obj in self.__objects.values():
+                if obj.__class__ == cls:
+                    counter += 1
+            return counter
+        return len(self.__objects)
 
-        if not cls:
-            count = 0
-            for clas in all_class:
-                count += len(models.storage.all(clas).values())
-        else:
-            count = len(models.storage.all(cls).values())
+        # if not cls:
+        #     count = 0
+        #     for clas in all_class:
+        #         count += len(models.storage.all(clas).values())
+        # else:
+        #     count = len(models.storage.all(cls).values())
 
-        return count
+        # return count
