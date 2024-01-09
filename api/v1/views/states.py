@@ -61,9 +61,9 @@ def put_state(state_id):
         abort(400, "Not a JSON")
 
     for k, v in body_request.items():
-        if k != 'id' and k != 'created_at' and k != 'updated_at':
+        if k != 'id' and k != 'created_at' and k != '':
             setattr(state, k, v)
-            setattr(state, 'created_at', datetime.utcnow())
+            setattr(state, 'updated_at', datetime.utcnow())
 
     storage.save()
     return make_response(jsonify(state.to_dict()), 200)
